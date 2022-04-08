@@ -38,15 +38,18 @@ class PopularMoviesUrlBuilder : UrlBuilderProtocol {
         return url.url!
     }
     
-    func setLanguage(_ language: String) -> Void {
+    func setLanguage(_ language: String?) -> Self {
         self.language = language
+        return self
     }
     
-    func setPage(_ page: Int) -> Void {
+    func setPage(_ page: Int?) -> Self {
         self.page = page
+        return self
     }
     
-    func setRegion(_ region: String) -> Void {
+    func setRegion(_ region: String?) -> Self {
         self.region = region
+        return self
     }
 }

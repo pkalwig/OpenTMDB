@@ -23,20 +23,12 @@ class TheMovieDbApiClient {
                           language: String? = nil,
                           page: Int? = nil,
                           region: String? = nil) -> URLSessionDataTask {
-        let urlBuilder = TheMovieDbUrlBuilder(apiKey: self.apiKey).getPopularMoviesUrl()
-        if let language = language {
-            urlBuilder.setLanguage(language)
-        }
-        
-        if let page = page {
-            urlBuilder.setPage(page)
-        }
-        
-        if let region = region {
-            urlBuilder.setRegion(region)
-        }
-        
-        let url = urlBuilder.build()
+        let url = TheMovieDbUrlBuilder(apiKey: self.apiKey)
+            .getPopularMoviesUrl()
+            .setLanguage(language)
+            .setPage(page)
+            .setRegion(region)
+            .build()
         return urlSession.dataTask(with: url, completionHandler: completionHandler)
     }
 }
