@@ -8,9 +8,16 @@
 import Foundation
 
 class PopularMoviesUrlBuilder : UrlBuilderProtocol {
+    
+    private static let popularMoviesUrl = "/movie/popular"
+    
+    private static let apiKeyQueryItemName = "api_key"
+    private static let languageQueryItemName = "language"
+    private static let pageQueryItemName = "page"
+    private static let regionQueryItemName = "region"
+    
     private var apiKey: String
     private var baseUrl: String
-    private let popularMoviesUrl = "/movie/popular"
     private var language: String?
     private var page: Int?
     private var region: String?
@@ -21,18 +28,18 @@ class PopularMoviesUrlBuilder : UrlBuilderProtocol {
     }
     
     func build() -> URL {
-        var url : URLComponents = URLComponents(string: baseUrl + popularMoviesUrl)!
-        url.queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+        var url : URLComponents = URLComponents(string: baseUrl + Self.popularMoviesUrl)!
+        url.queryItems = [URLQueryItem(name: Self.apiKeyQueryItemName, value: apiKey)]
         if language != nil && language != "" {
-            url.queryItems?.append(URLQueryItem(name: "language", value: language))
+            url.queryItems?.append(URLQueryItem(name: Self.languageQueryItemName, value: language))
         }
         
         if page != nil && page! > 0 {
-            url.queryItems?.append(URLQueryItem(name: "page", value: String(page!)))
+            url.queryItems?.append(URLQueryItem(name: Self.pageQueryItemName, value: String(page!)))
         }
         
         if region != nil && region! != "" {
-            url.queryItems?.append(URLQueryItem(name: "region", value: region))
+            url.queryItems?.append(URLQueryItem(name: Self.regionQueryItemName, value: region))
         }
         
         return url.url!
