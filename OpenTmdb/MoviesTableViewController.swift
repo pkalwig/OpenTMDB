@@ -38,7 +38,6 @@ class MoviesTableViewController : UITableViewController
             
             print("Request successfull.")
             let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
                 let popularMovies = try decoder.decode(PagedResponse<Movie>.self, from: data)
                 for popularMovie in popularMovies.results {
