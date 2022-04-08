@@ -19,7 +19,7 @@ class TheMovieDbApiClient {
     // nest Movies.getPopular(_:_:)
     // build completionHandler here, pass basic handlers from VM
     
-    func getPopularMovies(completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void,
+    func getPopularMovies(completionHandler: @escaping TypeAliases.DataTaskCallback,
                           language: String? = nil,
                           page: Int? = nil,
                           region: String? = nil) -> URLSessionDataTask {
