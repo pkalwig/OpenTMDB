@@ -13,7 +13,7 @@ class MoviesTableViewController : UITableViewController
     var movies = Array<Movie>()
     
     override func viewDidLoad() {
-        self.title = "Popular movies"
+        self.title = NSLocalizedString("PopularMoviesTitle", comment: "")
 
         let apiClient = TheMovieDbApiClient(urlSession: URLSession.shared, apiKey: AppSettings.apiKey)
         let task = apiClient.getPopularMovies() {[weak self] data, response, error in
