@@ -16,43 +16,19 @@ class MoviesTableViewController : UITableViewController
         self.title = NSLocalizedString("PopularMoviesTitle", comment: "")
 
         let apiClient = TheMovieDbApiClient(urlSession: URLSession.shared, apiKey: AppSettings.apiKey)
-        let task = apiClient.getPopularMovies() {[weak self] data, response, error in
-            guard
-                let data = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200,
-                error == nil
-            else {
-                print("Request failed.")
-                if let error = error {
-                    print(error.localizedDescription)
+        apiClient.getPopularMovies() {[weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let movies):
+                for movie in movies {
+                    self?.movies.append(movie)
                 }
-                
-                if let response = response as? HTTPURLResponse{
-                    print(response.statusCode)
-                    print(response.description)
-                }
-                
-                return
-            }
-            
-            print("Request successfull.")
-            let decoder = JSONDecoder()
-            do {
-                let popularMovies = try decoder.decode(PagedResponse<Movie>.self, from: data)
-                for popularMovie in popularMovies.results {
-                    self?.movies.append(popularMovie)
-                }
-                
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
             }
-            catch {
-                print("Decoding JSON failed \(error)")
-            }
         }
-        task.resume()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

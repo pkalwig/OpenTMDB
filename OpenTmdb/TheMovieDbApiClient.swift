@@ -7,28 +7,60 @@
 
 import Foundation
 
+typealias MoviesCallback = (Result<Array<Movie>, NetworkRequestError>) -> Void
+
 class TheMovieDbApiClient {
-    var urlSession: URLSession
-    var apiKey: String
+    private var urlSession: URLSession
+    private var apiKey: String
     
     init(urlSession: URLSession, apiKey: String) {
         self.urlSession = urlSession
         self.apiKey = apiKey
     }
     
-    // nest Movies.getPopular(_:_:)
-    // build completionHandler here, pass basic handlers from VM
-    
-    func getPopularMovies(completionHandler: @escaping TypeAliases.DataTaskCallback,
+    func getPopularMovies(completionHandler: @escaping MoviesCallback,
                           language: String? = nil,
                           page: Int? = nil,
-                          region: String? = nil) -> URLSessionDataTask {
+                          region: String? = nil) {
         let url = TheMovieDbUrlBuilder(apiKey: self.apiKey)
             .getPopularMoviesUrl()
             .setLanguage(language)
             .setPage(page)
             .setRegion(region)
             .build()
-        return urlSession.dataTask(with: url, completionHandler: completionHandler)
+        let dataTask = urlSession.dataTask(with: url) {data, response, error in
+            guard
+                let data = data,
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200,
+                error == nil
+            else {
+                print("Request failed.")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                if let response = response as? HTTPURLResponse{
+                    print(response.statusCode)
+                    print(response.description)
+                }
+                
+                return completionHandler(.failure(.connection))
+            }
+            
+            print("Request successfull.")
+            let decoder = JSONDecoder()
+            do {
+                let popularMovies = try decoder.decode(PagedResponse<Movie>.self, from: data)
+                return completionHandler(.success(popularMovies.results))
+                
+            }
+            catch {
+                print("Decoding JSON failed \(error)")
+                completionHandler(.failure(.decoding))
+            }
+        }
+        
+        dataTask.resume()
     }
 }
