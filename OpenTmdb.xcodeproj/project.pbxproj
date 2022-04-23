@@ -24,7 +24,18 @@
 		8398212527C773BD002451CE /* MoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398212427C773BD002451CE /* MoviesTableViewController.swift */; };
 		839902E72809751500D66402 /* NetworkRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839902E62809751500D66402 /* NetworkRequestError.swift */; };
 		83B0333A27FF6B7F0005009A /* PopularMoviesUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B0333927FF6B7F0005009A /* PopularMoviesUrlBuilder.swift */; };
+		83D66CB12814AD9E00676645 /* OpenTmdbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D66CB02814AD9E00676645 /* OpenTmdbTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		83D66CB22814AD9E00676645 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8398210527C6C2DD002451CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8398210C27C6C2DD002451CE;
+			remoteInfo = OpenTmdb;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8350D88A28005A9F001C01B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -46,10 +57,19 @@
 		8398212427C773BD002451CE /* MoviesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewController.swift; sourceTree = "<group>"; };
 		839902E62809751500D66402 /* NetworkRequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestError.swift; sourceTree = "<group>"; };
 		83B0333927FF6B7F0005009A /* PopularMoviesUrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesUrlBuilder.swift; sourceTree = "<group>"; };
+		83D66CAE2814AD9E00676645 /* OpenTmdbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenTmdbTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83D66CB02814AD9E00676645 /* OpenTmdbTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTmdbTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		8398210A27C6C2DD002451CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83D66CAB2814AD9E00676645 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -82,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				8398210F27C6C2DD002451CE /* OpenTmdb */,
+				83D66CAF2814AD9E00676645 /* OpenTmdbTests */,
 				8398210E27C6C2DD002451CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				8398210D27C6C2DD002451CE /* OpenTmdb.app */,
+				83D66CAE2814AD9E00676645 /* OpenTmdbTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,6 +146,14 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
+		83D66CAF2814AD9E00676645 /* OpenTmdbTests */ = {
+			isa = PBXGroup;
+			children = (
+				83D66CB02814AD9E00676645 /* OpenTmdbTests.swift */,
+			);
+			path = OpenTmdbTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +174,24 @@
 			productReference = 8398210D27C6C2DD002451CE /* OpenTmdb.app */;
 			productType = "com.apple.product-type.application";
 		};
+		83D66CAD2814AD9E00676645 /* OpenTmdbTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83D66CB62814AD9E00676645 /* Build configuration list for PBXNativeTarget "OpenTmdbTests" */;
+			buildPhases = (
+				83D66CAA2814AD9E00676645 /* Sources */,
+				83D66CAB2814AD9E00676645 /* Frameworks */,
+				83D66CAC2814AD9E00676645 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83D66CB32814AD9E00676645 /* PBXTargetDependency */,
+			);
+			name = OpenTmdbTests;
+			productName = OpenTmdbTests;
+			productReference = 83D66CAE2814AD9E00676645 /* OpenTmdbTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -151,11 +199,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					8398210C27C6C2DD002451CE = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					83D66CAD2814AD9E00676645 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 8398210C27C6C2DD002451CE;
 					};
 				};
 			};
@@ -173,6 +225,7 @@
 			projectRoot = "";
 			targets = (
 				8398210C27C6C2DD002451CE /* OpenTmdb */,
+				83D66CAD2814AD9E00676645 /* OpenTmdbTests */,
 			);
 		};
 /* End PBXProject section */
@@ -186,6 +239,13 @@
 				8350D88B28005A9F001C01B7 /* Localizable.strings in Resources */,
 				8398211A27C6C2E9002451CE /* Assets.xcassets in Resources */,
 				8398211827C6C2DD002451CE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83D66CAC2814AD9E00676645 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +272,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		83D66CAA2814AD9E00676645 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83D66CB12814AD9E00676645 /* OpenTmdbTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		83D66CB32814AD9E00676645 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8398210C27C6C2DD002451CE /* OpenTmdb */;
+			targetProxy = 83D66CB22814AD9E00676645 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8350D88928005A9F001C01B7 /* Localizable.strings */ = {
@@ -416,6 +492,44 @@
 			};
 			name = Release;
 		};
+		83D66CB42814AD9E00676645 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 357Q5QMU3A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.OpenTmdbTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenTmdb.app/OpenTmdb";
+			};
+			name = Debug;
+		};
+		83D66CB52814AD9E00676645 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 357Q5QMU3A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.personal.OpenTmdbTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenTmdb.app/OpenTmdb";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -433,6 +547,15 @@
 			buildConfigurations = (
 				8398212227C6C2E9002451CE /* Debug */,
 				8398212327C6C2E9002451CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83D66CB62814AD9E00676645 /* Build configuration list for PBXNativeTarget "OpenTmdbTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83D66CB42814AD9E00676645 /* Debug */,
+				83D66CB52814AD9E00676645 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
