@@ -11,6 +11,8 @@ typealias ApiCallback<T> = (Result<T, NetworkRequestError>) -> Void
 typealias MoviesCallback = (Result<Array<Movie>, NetworkRequestError>) -> Void
 
 class TheMovieDbApiClient {
+    private static let applicationJsonMimeType : String = "application/json"
+    
     private var urlSession: URLSession
     private var apiKey: String
     
@@ -38,34 +40,44 @@ class TheMovieDbApiClient {
     
     private func get<T : Decodable>(_ type: T.Type, with url: URL, onSuccess: @escaping (T) -> Void, onError: @escaping (Error) -> Void) {
         let dataTask = urlSession.dataTask(with: url) { data, response, error in
-            guard
-                let data = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200,
-                error == nil
-            else {
-                print("Request failed.")
-                if let error = error {
-                    onError(error)
-                }
-                
-                if let response = response as? HTTPURLResponse{
-                    print(response.statusCode)
-                    print(response.description)
-                }
-                
-                return onError(NetworkRequestError.connection)
+            if let error = error {
+                onError(error)
+                return
             }
             
-            print("Request successfull.")
+            guard let httpResponse = response as? HTTPURLResponse
+            else {
+                onError(NetworkRequestError.connection)
+                return
+            }
+            
+            if httpResponse.statusCode == 401 {
+                onError(NetworkRequestError.unauthorized)
+                return
+            }
+            
+            if httpResponse.statusCode == 404 {
+                onError(NetworkRequestError.notfound)
+                return
+            }
+            
+            guard
+                httpResponse.statusCode == 200,
+                let mimeType = httpResponse.mimeType, mimeType == TheMovieDbApiClient.applicationJsonMimeType,
+                let data = data
+            else {
+                onError(NetworkRequestError.unexpectedData)
+                return
+            }
+            
             let decoder = JSONDecoder()
             do {
-                let response = try decoder.decode(type, from: data)
-                return onSuccess(response)
+                let dataDecoded = try decoder.decode(type, from: data)
+                return onSuccess(dataDecoded)
             }
             catch {
-                print("Decoding JSON failed \(error)")
                 onError(error)
+                return
             }
         }
         dataTask.resume()
