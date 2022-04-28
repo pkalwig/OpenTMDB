@@ -60,10 +60,8 @@ class TheMovieDbApiClient {
             print("Request successfull.")
             let decoder = JSONDecoder()
             do {
-                let jsonString = String(decoding: data, as: UTF8.self)
                 let response = try decoder.decode(type, from: data)
                 return onSuccess(response)
-                
             }
             catch {
                 print("Decoding JSON failed \(error)")
