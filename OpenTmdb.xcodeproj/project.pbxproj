@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		833C58B1281A99D600F7909F /* UrlSessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C58B0281A99D600F7909F /* UrlSessionProvider.swift */; };
 		8350D88B28005A9F001C01B7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8350D88928005A9F001C01B7 /* Localizable.strings */; };
 		8350D88D280077F5001C01B7 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8350D88C280077F5001C01B7 /* TypeAliases.swift */; };
 		838C4C8D27F6FE130009028D /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C4C8C27F6FE130009028D /* MovieDetailsViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		833C58B0281A99D600F7909F /* UrlSessionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSessionProvider.swift; sourceTree = "<group>"; };
 		8350D88A28005A9F001C01B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8350D88C280077F5001C01B7 /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		838C4C8C27F6FE130009028D /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				83935B5B27F7985200E42435 /* AppSettings.swift */,
 				8350D88928005A9F001C01B7 /* Localizable.strings */,
 				8350D88C280077F5001C01B7 /* TypeAliases.swift */,
+				833C58B0281A99D600F7909F /* UrlSessionProvider.swift */,
 			);
 			path = OpenTmdb;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			files = (
 				838C4C8D27F6FE130009028D /* MovieDetailsViewController.swift in Sources */,
 				839902E72809751500D66402 /* NetworkRequestError.swift in Sources */,
+				833C58B1281A99D600F7909F /* UrlSessionProvider.swift in Sources */,
 				83B0333A27FF6B7F0005009A /* PopularMoviesUrlBuilder.swift in Sources */,
 				8350D88D280077F5001C01B7 /* TypeAliases.swift in Sources */,
 				83935B5327F77E6B00E42435 /* PagedResponse.swift in Sources */,

@@ -15,7 +15,7 @@ class MoviesTableViewController : UITableViewController
     override func viewDidLoad() {
         self.title = NSLocalizedString("PopularMoviesTitle", comment: "")
 
-        let apiClient = TheMovieDbApiClient(urlSession: URLSession.shared, apiKey: AppSettings.apiKey)
+        let apiClient = TheMovieDbApiClient(urlSessionProvider: UrlSessionProvider.instance, apiKey: AppSettings.apiKey)
         apiClient.getPopularMovies() {[weak self] result in
             switch result {
             case .failure(let error):
