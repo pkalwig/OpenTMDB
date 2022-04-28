@@ -14,8 +14,8 @@ class TheMovieDbApiClient {
     private var urlSession: URLSession
     private var apiKey: String
     
-    init(urlSession: URLSession, apiKey: String) {
-        self.urlSession = urlSession
+    init(urlSessionProvider: UrlSessionProviderProtocol, apiKey: String) {
+        self.urlSession = urlSessionProvider.get()
         self.apiKey = apiKey
     }
     
