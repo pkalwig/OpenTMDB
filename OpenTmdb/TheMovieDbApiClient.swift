@@ -8,7 +8,7 @@
 import Foundation
 
 typealias ApiCallback<T> = (Result<T, NetworkRequestError>) -> Void
-typealias MoviesCallback = (ApiCallback<Array<Movie>>) -> Void
+typealias MoviesCallback = (Result<Array<Movie>, NetworkRequestError>) -> Void
 
 class TheMovieDbApiClient {
     private var urlSession: URLSession
@@ -29,42 +29,47 @@ class TheMovieDbApiClient {
             .setPage(page)
             .setRegion(region)
             .build()
-        let dataTask = urlSession.dataTask(with: url) {	data, response, error in
-            handleResponse(data: data, response: response, error: error, completionHandler: completionHandler, responseType: Array<Movie>.self)
+        get(PagedResponse<Movie>.self, with: url) { pagedResponse in
+            completionHandler(.success(pagedResponse.results))
+        } onError: { error in
+            print(error.localizedDescription)
         }
-        dataTask.resume()
     }
     
-    private func handleResponse<T>(data: Data?, response: URLResponse?, error: Error?, completionHandler: MoviesCallback, responseType: T.Type = T.self) {
-        guard
-            let data = data,
-            let response = response as? HTTPURLResponse,
-            response.statusCode == 200,
-            error == nil
-        else {
-            print("Request failed.")
-            if let error = error {
-                print(error.localizedDescription)
+    private func get<T : Decodable>(_ type: T.Type, with url: URL, onSuccess: @escaping (T) -> Void, onError: @escaping (Error) -> Void) {
+        let dataTask = urlSession.dataTask(with: url) { data, response, error in
+            guard
+                let data = data,
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200,
+                error == nil
+            else {
+                print("Request failed.")
+                if let error = error {
+                    onError(error)
+                }
+                
+                if let response = response as? HTTPURLResponse{
+                    print(response.statusCode)
+                    print(response.description)
+                }
+                
+                return onError(NetworkRequestError.connection)
             }
             
-            if let response = response as? HTTPURLResponse{
-                print(response.statusCode)
-                print(response.description)
+            print("Request successfull.")
+            let decoder = JSONDecoder()
+            do {
+                let jsonString = String(decoding: data, as: UTF8.self)
+                let response = try decoder.decode(type, from: data)
+                return onSuccess(response)
+                
             }
-            
-            return completionHandler(.failure(.connection))
+            catch {
+                print("Decoding JSON failed \(error)")
+                onError(error)
+            }
         }
-        
-        print("Request successfull.")
-        let decoder = JSONDecoder()
-        do {
-            let popularMovies = try decoder.decode(T.self, from: data)
-            return completionHandler(.success(popularMovies.results))
-            
-        }
-        catch {
-            print("Decoding JSON failed \(error)")
-            completionHandler(.failure(.decoding))
-        }
+        dataTask.resume()
     }
 }
