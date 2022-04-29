@@ -25,7 +25,7 @@
 		8398212527C773BD002451CE /* MoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8398212427C773BD002451CE /* MoviesTableViewController.swift */; };
 		839902E72809751500D66402 /* NetworkRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839902E62809751500D66402 /* NetworkRequestError.swift */; };
 		83B0333A27FF6B7F0005009A /* PopularMoviesUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B0333927FF6B7F0005009A /* PopularMoviesUrlBuilder.swift */; };
-		83D66CB12814AD9E00676645 /* OpenTmdbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D66CB02814AD9E00676645 /* OpenTmdbTests.swift */; };
+		83D66CB12814AD9E00676645 /* TheMovieDbApiClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D66CB02814AD9E00676645 /* TheMovieDbApiClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +60,7 @@
 		839902E62809751500D66402 /* NetworkRequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestError.swift; sourceTree = "<group>"; };
 		83B0333927FF6B7F0005009A /* PopularMoviesUrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesUrlBuilder.swift; sourceTree = "<group>"; };
 		83D66CAE2814AD9E00676645 /* OpenTmdbTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenTmdbTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		83D66CB02814AD9E00676645 /* OpenTmdbTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenTmdbTests.swift; sourceTree = "<group>"; };
+		83D66CB02814AD9E00676645 /* TheMovieDbApiClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieDbApiClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +151,7 @@
 		83D66CAF2814AD9E00676645 /* OpenTmdbTests */ = {
 			isa = PBXGroup;
 			children = (
-				83D66CB02814AD9E00676645 /* OpenTmdbTests.swift */,
+				83D66CB02814AD9E00676645 /* TheMovieDbApiClientTests.swift */,
 				833C58B5281B2B2600F7909F /* URLProtocolMock.swift */,
 			);
 			path = OpenTmdbTests;
@@ -279,7 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83D66CB12814AD9E00676645 /* OpenTmdbTests.swift in Sources */,
+				83D66CB12814AD9E00676645 /* TheMovieDbApiClientTests.swift in Sources */,
 				833C58B6281B2B2700F7909F /* URLProtocolMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
